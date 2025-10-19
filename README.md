@@ -40,6 +40,10 @@ Durante a criação do projeto, o Angular CLI fará algumas perguntas. Responda 
     * Resposta sugerida: `N`
 * **Do you want to create a 'zoneless' application without zone.js?**
     * Resposta sugerida: `N`
+* **Which AI tools do you want to configure with Angular best practices?
+https://angular.dev/ai/develop-with-ai (Press <space> to select, <a> to
+toggle all, <i> to invert selection, and <enter> to proceed)**
+    * Resposta sugerida: `None`
 
 ## 2. Acesso à Pasta do Projeto
 
@@ -84,7 +88,7 @@ Dentro da pasta do projeto (`farmacia`), crie a estrutura de pastas essencial e 
         ```bash
         ng g c cabecalho
         ```
-        ou (caso o comando `ng` não seja reconhecido globalmente):
+        **ou** (caso o comando `ng` não seja reconhecido globalmente):
         ```bash
         npx ng g c cabecalho
         ```
@@ -116,10 +120,7 @@ Dentro da pasta do projeto (`farmacia`), crie a estrutura de pastas essencial e 
         ```
     * Agora, crie os componentes reutilizáveis (o componente `consultar` foi digitado duas vezes no seu original, mantive a sequência):
         ```bash
-        ng g c cadastro
-        ```
-        ```bash
-        ng g c consultar
+        ng g c cadastrar
         ```
         ```bash
         ng g c consultar
