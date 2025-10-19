@@ -188,39 +188,7 @@ code .
 ---
 # ⚛️ No VS Code
 
-#### 1. `main.ts`
-
-Digite o seguinte código:
-
-```typescript
-import { bootstrapApplication } from '@angular/platform-browser';
-import { appConfig } from './app/app.config'; 
-import { AppComponent } from './app/app.component';
-
-bootstrapApplication(AppComponent, appConfig) 
-  .catch((err) => console.error(err));
-```
-
-#### 1.1 `app.config.ts`
-
-```typescript
-import { ApplicationConfig, provideZoneChangeDetection } from '@angular/core';
-import { provideRouter } from '@angular/router';
-import { provideHttpClient } from '@angular/common/http';
-import { routes } from './app.routes';
-
-export const appConfig: ApplicationConfig = {
-  providers: [
-    provideRouter(routes), 
-    provideHttpClient() 
-  ]
-};
-```
-
-> [!NOTE]
-> **ATENÇÃO:** Este passo é crucial para habilitar o serviço HTTP (`HttpClient`).
-
-#### 2. `app.component.ts` ou `app.ts`
+#### 1. `app.component.ts` ou `app.ts`
 
 Digite e faça as devidas atualizações para o caminho dos imports (que agora são relativos à pasta raiz do projeto, `app/`):
 
@@ -241,6 +209,38 @@ export class AppComponent {
   title = 'Farmácia';
 }
 ```
+
+#### 2. `main.ts`
+
+Digite o seguinte código:
+
+```typescript
+import { bootstrapApplication } from '@angular/platform-browser';
+import { appConfig } from './app/app.config'; 
+import { AppComponent } from './app/app.component';
+
+bootstrapApplication(AppComponent, appConfig) 
+  .catch((err) => console.error(err));
+```
+
+#### 2.1 `app.config.ts`
+
+```typescript
+import { ApplicationConfig, provideZoneChangeDetection } from '@angular/core';
+import { provideRouter } from '@angular/router';
+import { provideHttpClient } from '@angular/common/http';
+import { routes } from './app.routes';
+
+export const appConfig: ApplicationConfig = {
+  providers: [
+    provideRouter(routes), 
+    provideHttpClient() 
+  ]
+};
+```
+
+> [!NOTE]
+> **ATENÇÃO:** Este passo é crucial para habilitar o serviço HTTP (`HttpClient`).
 
 #### 3. `app.component.html` ou `app.html`
 
@@ -279,7 +279,49 @@ app-rodape {
 }
 ```
 
-#### **5. `data/farmacia.json`**
+#### **5. `index.html`**
+
+Digite o seguinte código:
+
+```html
+<!doctype html>
+<html lang="pt-br">
+<head>
+  <meta charset="utf-8">
+  <title>Farmácia</title>
+  <base href="/">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="icon" type="image/png" href="https://cdn-icons-png.flaticon.com/512/2966/2966327.png">
+</head>
+<body>
+  <app-root></app-root>
+</body>
+</html>
+
+```
+
+#### **6. `app.routes.ts`**
+
+Digite o seguinte código:
+
+```typescript
+import { PrincipalComponent } from './../../pages/principal/principal.component';
+import { Routes } from '@angular/router';
+import { CadastrarComponent } from '../../component/cadastrar/cadastrar.component';
+import { ConsultarComponent } from '../../component/consultar/consultar.component';
+import { ExcluirComponent } from '../../component/excluir/excluir.component';
+import { ListarComponent } from '../../component/listar/listar.component';
+
+export const routes: Routes = [
+  { path: '', component: PrincipalComponent, title: 'Farmácia' },
+  { path: 'cadastrar', component: CadastrarComponent, title: 'Cadastrar' },
+  { path: 'consultar', component: ConsultarComponent, title: 'Consultar' },
+  { path: 'excluir', component: ExcluirComponent, title: 'Excluir' },
+  { path: 'listar', component: ListarComponent, title: 'Listar' },
+  { path: '**', redirectTo: '' }]
+```
+
+#### **7. `data/farmacia.json`**
 
 Digite o seguinte código:
 
@@ -394,7 +436,7 @@ Digite o seguinte código:
 }
 ```
 
-#### 6. `core/types/types.ts`
+#### 8. `core/types/types.ts`
 
 Este arquivo define a estrutura de dados (interface) para o objeto **Medicamento**. Digite o seguinte código:
 
@@ -409,7 +451,7 @@ export interface Medicamento {
 }
 ```
 
-#### 7. `core/services/medicamentos.service.ts`
+#### 9. `core/services/medicamentos.service.ts`
 
 Digite e faça as **importações com os caminhos atualizados**. O código final deve ser o seguinte:
 
@@ -450,7 +492,7 @@ export class MedicamentosService {
 }
 ```
 
-#### 8. `pages/cabecalho/cabecalho.component.html`
+#### 10. `pages/cabecalho/cabecalho.component.html`
 
 Digite o seguinte código:
 
@@ -470,7 +512,7 @@ Digite o seguinte código:
 </header>
 ```
 
-#### 9. `pages/cabecalho/cabecalho.component.css`
+#### 11. `pages/cabecalho/cabecalho.component.css`
 
 Digite o seguinte código:
 
@@ -543,7 +585,7 @@ Digite o seguinte código:
 }
 ```
 
-#### 10. `pages/cabecalho/cabecalho.component.ts`
+#### 12. `pages/cabecalho/cabecalho.component.ts`
 
 Digite o seguinte código:
 
@@ -563,7 +605,7 @@ export class CabecalhoComponent {
 }
 ```
 
-#### 11. `pages/principal/principal.component.html`
+#### 13. `pages/principal/principal.component.html`
 
 Digite o seguinte código:
 
@@ -601,7 +643,7 @@ Digite o seguinte código:
 </main>
 ```
 
-#### 12. `pages/principal/principal.component.css`
+#### 14. `pages/principal/principal.component.css`
 
 Digite o seguinte código:
 
@@ -733,7 +775,7 @@ Digite o seguinte código:
 }
 ```
 
-#### 13. `pages/principal/principal.component.ts`
+#### 15. `pages/principal/principal.component.ts`
 
 Digite o seguinte código:
 
@@ -753,7 +795,7 @@ export class PrincipalComponent {
 }
 ```
 
-#### 14. `pages/rodape/rodape.component.html`
+#### 16. `pages/rodape/rodape.component.html`
 
 Digite o seguinte código:
 
@@ -765,7 +807,7 @@ Digite o seguinte código:
 </footer>
 ```
 
-#### 15. `pages/rodape/rodape.component.css`
+#### 17. `pages/rodape/rodape.component.css`
 
 Digite o seguinte código:
 
@@ -789,7 +831,7 @@ Digite o seguinte código:
 }
 ```
 
-#### 16. `pages/rodape/rodape.component.ts`
+#### 18. `pages/rodape/rodape.component.ts`
 
 Digite o seguinte código:
 
@@ -809,27 +851,7 @@ export class RodapeComponent {
 }
 ```
 
-#### 17. `pages/rodape/rodape.component.ts`
-
-Digite o seguinte código:
-
-```typescript
-import { Component } from '@angular/core';
-import { CommonModule } from '@angular/common';
-
-@Component({
-  selector: 'app-rodape',
-  standalone: true,
-  imports: [CommonModule],
-  templateUrl: './rodape.component.html',
-  styleUrls: ['./rodape.component.css']
-})
-export class RodapeComponent {
-  currentYear: number = new Date().getFullYear();
-}
-```
-
-#### 18. `component/cadastrar/cadastrar.component.html`
+#### 19. `component/cadastrar/cadastrar.component.html`
 
 Digite o seguinte código:
 
@@ -929,7 +951,7 @@ Digite o seguinte código:
 </div>
 ```
 
-#### 19. `component/cadastrar/cadastrar.component.css`
+#### 20. `component/cadastrar/cadastrar.component.css`
 
 Digite o seguinte código:
 
@@ -1044,7 +1066,7 @@ form label {
 }
 ```
 
-#### 20. `component/cadastrar/cadastrar.component.ts`
+#### 21. `component/cadastrar/cadastrar.component.ts`
 
 Digite o seguinte código:
 
@@ -1092,7 +1114,7 @@ export class CadastrarComponent {
 }
 ```
 
-#### 21. `component/consultar/consultar.component.html`
+#### 22. `component/consultar/consultar.component.html`
 
 Digite o seguinte código:
 
@@ -1130,7 +1152,7 @@ Digite o seguinte código:
 </div>
 ```
 
-#### 22. `component/consultar/consultar.component.css`
+#### 23. `component/consultar/consultar.component.css`
 
 Digite o seguinte código:
 
@@ -1215,7 +1237,7 @@ form {
 }
 ```
 
-#### 23. `component/consultar/consultar.component.ts`
+#### 24. `component/consultar/consultar.component.ts`
 
 Digite o seguinte código:
 
@@ -1265,7 +1287,7 @@ export class ConsultarComponent {
 }
 ```
 
-#### 24. `component/excluir/excluir.component.html`
+#### 25. `component/excluir/excluir.component.html`
 
 Digite o seguinte código:
 
@@ -1303,7 +1325,7 @@ Digite o seguinte código:
 </div>
 ```
 
-#### 25. `component/excluir/excluir.component.css`
+#### 26. `component/excluir/excluir.component.css`
 
 Digite o seguinte código:
 
@@ -1387,7 +1409,7 @@ form {
 }
 ```
 
-#### 26. `component/excluir/excluir.component.ts`
+#### 27. `component/excluir/excluir.component.ts`
 
 Digite o seguinte código:
 
@@ -1438,7 +1460,7 @@ export class ExcluirComponent {
 }
 ```
 
-#### 27. `component/listar/listar.component.html`
+#### 28. `component/listar/listar.component.html`
 
 Digite o seguinte código:
 
@@ -1486,7 +1508,7 @@ Digite o seguinte código:
 </div>
 ```
 
-#### 28. `component/listar/listar.component.css`
+#### 29. `component/listar/listar.component.css`
 
 Digite o seguinte código:
 
@@ -1590,7 +1612,7 @@ h2 {
 }
 ```
 
-#### 29. `component/listar/listar.component.ts`
+#### 30. `component/listar/listar.component.ts`
 
 Digite o seguinte código:
 
@@ -1688,13 +1710,15 @@ Para testar o backend (API simulada), siga estes passos:
     npx ng serve --open
     ```
 ---
-### ⚠️ ALERTA IMPORTANTE: ATUALIZAÇÃO DE IMPORTS 
 
-Ao mover ou criar arquivos fora da estrutura padrão (como as pastas `core/services` e `core/types`), os imports automáticos do TypeScript podem quebrar ou apontar para o lugar errado.
+# ⚠️ ALERTA IMPORTANTE: ATENÇÃO AOS ARQUIVOS .TS 
 
-**Não se esqueça de verificar e corrigir manualmente o caminho relativo (`../`) dos imports em TODOS os arquivos que utilizam o `Medicamento` e o `MedicamentosService`.**
+> **Ao criar componentes em pastas separadas (`pages`, `component`, `core`), dois erros são comuns:**
+>
+> 1.  **Caminhos dos Imports:** Verifique se o caminho relativo (`../`) nos *imports* do TypeScript está correto (Ex.: `import { Medicamento } from '../types/types';`).
+>
+> 2.  **Capitalização (Case Sensitive):** O nome do componente deve ser consistente. Se a classe é `CabecalhoComponent`, use `CabecalhoComponent` nos *imports* (`app.component.ts`, `app.routes.ts`) para evitar erros de compilação.
 
-* **Exemplo:** Em qualquer componente ou serviço que use o `Medicamento`, verifique se o caminho em `from '../types/types'` está correto.
 
 
 
