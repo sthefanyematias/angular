@@ -1714,7 +1714,7 @@ Para testar o backend (API simulada), siga estes passos:
     ```
 ---
 
-# ⚠️ ALERTA IMPORTANTE: ATENÇÃO AOS ARQUIVOS .TS 
+### ⚠️ ALERTA IMPORTANTE: ATENÇÃO AOS ARQUIVOS .TS 
 
 > **Ao criar componentes em pastas separadas (`pages`, `component`, `core`), dois erros são comuns:**
 >
@@ -1737,13 +1737,21 @@ Se o arquivo gerado foi `listar.html`, você deve garantir que a rota esteja cor
 ```typescript
 @Component({
   // ...
-  templateUrl: './listar.component.html', // Corrija se necessário para listar.html
-  styleUrl: './listar.compoenet.css'     // Corrija se necessário para listar.css
+  templateUrl: './listar.html', // Corrija se necessário
+  styleUrl: './listar.css'     // Corrija se necessário
 })
 export class ListarComponent { // Verifique se a classe é 'Listar' ou 'ListarComponent'
 // ...
 }
 ```
+
+### 🎥 Tutorial em Vídeo 
+
+Para visualizar como resolver essa questão do nome do arquivo (apagando o sufixo), assista ao vídeo a seguir:
+
+> **Nota:** Este vídeo demonstra o ajuste rápido dos caminhos dos arquivos `templateUrl` e `styleUrl` **e a atualização do nome da classe** do componente após a criação.
+
+<img src="assets/video.gif" alt="Demonstração do ajuste do sufixo .component nos arquivos de componente" width="500">
 
 
 
