@@ -92,7 +92,10 @@ Dentro da pasta do projeto (`farmacia`), crie a estrutura de pastas essencial e 
         ```bash
         npx ng g c cabecalho
         ```
-        **Observação:** Provavelmente aparecerá uma mensagem solicitando o compartilhamento de dados anônimos. Responda `Yes` para continuar.
+        Provavelmente aparecerá uma mensagem solicitando o compartilhamento de dados anônimos. 
+
+      * **Would you like to share pseudonymous usage data about this project with the Angular Team at Google under Google's Privacy Policy at https://policies.google.com/privacy. For more details and how to             change this setting, see https://angular.dev/cli/analytics.**
+         * Resposta sugerida: `Yes`
 
     * Seguindo para a criação dos demais componentes principais da página:
         ```bash
@@ -1718,6 +1721,29 @@ Para testar o backend (API simulada), siga estes passos:
 > 1.  **Caminhos dos Imports:** Verifique se o caminho relativo (`../`) nos *imports* do TypeScript está correto (Ex.: `import { Medicamento } from '../types/types';`).
 >
 > 2.  **Capitalização (Case Sensitive):** O nome do componente deve ser consistente. Se a classe é `CabecalhoComponent`, use `CabecalhoComponent` nos *imports* (`app.component.ts`, `app.routes.ts`) para evitar erros de compilação.
+
+---
+### 🎞️ Dica Rápida: Ajuste de Nomes nos Componentes
+
+Durante a criação de componentes, especialmente se for usada a opção `--standalone`, o Angular pode gerar arquivos com ou sem o sufixo `.component` no nome (Ex.: `listar.html` ou `listar.component.html`).
+
+* **Verificação:** Verifique os nomes exatos dos arquivos gerados dentro da pasta do seu componente (`.html` e `.css`).
+* **Ajuste no `.ts`:** No arquivo TypeScript (`.ts`) do componente, corrija as rotas (`templateUrl` e `styleUrl`) e o nome da classe (`export class SeuComponente`).
+
+#### Exemplo de Ajuste no Arquivo `.ts` do componente reutilizável `Listar`:
+
+Se o arquivo gerado foi `listar.html`, você deve garantir que a rota esteja correta:
+
+```typescript
+@Component({
+  // ...
+  templateUrl: './listar.component.html', // Corrija se necessário para listar.html
+  styleUrl: './listar.compoenet.css'     // Corrija se necessário para listar.css
+})
+export class ListarComponent { // Verifique se a classe é 'Listar' ou 'ListarComponent'
+// ...
+}
+```
 
 
 
